@@ -5,9 +5,10 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+const size = 4;
 ReactDOM.render(
   <Provider store={store}>
-    <Container />
+    <Container size={size}/>
   </Provider>,
   document.getElementById('root')
 );

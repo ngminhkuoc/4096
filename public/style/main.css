@@ -224,7 +224,7 @@ hr {
     margin-top: 59px;
 }
 
-.game-container .game-message a {
+.game-container .game-message button {
     display: inline-block;
     background: #8f7a66;
     border-radius: 3px;
@@ -234,6 +234,8 @@ hr {
     height: 40px;
     line-height: 42px;
     margin-left: 9px;
+    border: none;
+    cursor: pointer;
 }
 
 .game-container .game-message button.keep-playing-button {
@@ -784,7 +786,7 @@ hr {
         display: block;
         margin-top: 59px;
     }
-    .game-container .game-message a {
+    .game-container .game-message button {
         display: inline-block;
         background: #8f7a66;
         border-radius: 3px;
@@ -793,7 +795,10 @@ hr {
         color: #f9f6f2;
         height: 40px;
         line-height: 42px;
+        margin: 0;
         margin-left: 9px;
+        border: none;
+        cursor: pointer;
     }
     .game-container .game-message button.keep-playing-button {
         display: none;

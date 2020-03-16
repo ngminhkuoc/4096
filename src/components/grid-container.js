@@ -1,25 +1,20 @@
 import React, { Component } from "react";
 
-const noOfRows = 4;
-const noOfColumns = 4;
-
 export default class GridContainer extends Component {
     renderColumns() {
         let columns = [];
-        for (var i = 0; i < noOfColumns; i++) {
-            let column = (<div className="grid-cell" />);
-            columns.push(column);
+        for (var i = 0; i < this.props.size; i++) {
+            columns.push(<div className="grid-cell" key={i} />);
         }
         return columns;
     }
 
     renderCells() {
         let rows = [];
-        for (var i = 0; i < noOfRows; i++) {
-            let row = (<div className="grid-row">
+        for (var i = 0; i < this.props.size; i++) {
+            rows.push(<div className="grid-row" key={i}>
                 {this.renderColumns()}
             </div>);
-            rows.push(row);
         }
         return rows;
     }

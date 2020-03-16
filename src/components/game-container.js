@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import GridContainer from "./grid-container";
 import TileContainer from "./tile-container";
+var classNames = require('classnames');
 
 export default class GameContainer extends Component {
     render() {
-        var classes_ = classnames('game-message', {
+        var classes_ = classNames('game-message', {
             'game-won': this.props.won,
             'game-over': this.props.over
         });
@@ -18,7 +19,7 @@ export default class GameContainer extends Component {
                         <button className="retry-button">Try again</button>
                     </div>
                 </div>
-                <GridContainer />
+                <GridContainer size={this.props.size} />
                 <TileContainer />
             </div>
         )
