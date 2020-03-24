@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GridContainer from "../components/grid-container";
+import GridBackGround from "../components/grid-background";
 import TileContainer from "./tile-container";
 var classNames = require('classnames');
 
@@ -19,7 +19,7 @@ export default class GameContainer extends Component {
                         <button className="retry-button">Try again</button>
                     </div>
                 </div>
-                <GridContainer />
+                <GridBackGround />
                 <TileContainer />
             </div>
         )

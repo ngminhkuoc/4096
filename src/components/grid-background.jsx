@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { SIZE } from "../constants/app-constants";
 
-export default class GridContainer extends Component {
+export default class GridBackGround extends Component {
     renderColumns() {
         let columns = [];
         for (var i = 0; i < SIZE; i++) {

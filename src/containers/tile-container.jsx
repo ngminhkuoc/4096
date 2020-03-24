@@ -2,26 +2,17 @@ import { connect } from "react-redux";
 import React from 'react'
 import TileInner from '../components/tile-inner'
 
-function renderTiles(cells) {
-    let tiles = [];
-    if (cells) {
-        for (let row = 0; row < cells.length; row++) {
-            for (let column = 0; column < cells[row].length; column++) {
-                const cell = cells[row][column];
-                if (cell) {
-                    tiles.push(
-                        <TileInner key={`${cell.x} - ${cell.y}`} tile={cell} />
-                    )
-                }
-            }
-        }
-    } 
-    return tiles;
-}
-
 const TileList = ({ cells }) => (
     <div className="tile-container">
-        {renderTiles(cells)}
+        {
+            cells && cells.length ?
+                cells.map((column) => (
+                    column.map((cell) => (
+                        cell ? <TileInner key={`${cell.x} - ${cell.y}`} tile={cell} /> : ""
+                    ))
+                ))
+                : ""
+        }
     </div>
 )
 
