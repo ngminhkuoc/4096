@@ -9,7 +9,7 @@ import * as GameActions from '../actions/game-actions';
 
 class Container extends Component {
   render() {
-    const { games, grid, actions } = this.props;
+    const { actions } = this.props;
 
     return (
       <div className="container" >

@@ -3,13 +3,13 @@ import { SIZE } from '../constants/app-constants';
 
 const startTiles = 2;
 
-const initialState = [{
+const initialState = {
     grid: null,
     score: 0,
     over: false,
     won: false,
     keepPlaying: false
-}];
+};
 
 export default function games(state = initialState, action) {
     switch (action.type) {
