@@ -1,14 +1,16 @@
+import { createStore } from "redux";
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from './components/container';
-import store from './app/store';
-import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import Container from './containers/container';
+import RootReducer from "./reducers/root-reducer";
 
-const size = 4;
+const store = createStore(RootReducer);
+
 ReactDOM.render(
   <Provider store={store}>
-    <Container size={size}/>
+    <Container />
   </Provider>,
   document.getElementById('root')
 );

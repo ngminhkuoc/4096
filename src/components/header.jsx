@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
-export default class Heading extends Component {
+export default class Header extends Component {
+    handleNewGame = () => {
+        this.props.newGame();
+    }
+
     render() {
         return (
             <>
@@ -13,7 +17,7 @@ export default class Heading extends Component {
                 </div>
                 <div className="above-game">
                     <p className="game-intro">Join the numbers and get to the <strong>4096 tile!</strong></p>
-                    <button className="restart-button">New Game</button>
+                    <button className="restart-button" onClick={this.handleNewGame}>New Game</button>
                 </div>
             </>
         )
