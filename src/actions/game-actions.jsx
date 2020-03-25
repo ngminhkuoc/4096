@@ -1,4 +1,4 @@
-import { NEW_GAME, MOVE } from "../constants/action-types";
+import { NEW_GAME, MOVE, KEEP_PLAYING } from "../constants/action-types";
 
 
 export const newGame = () => ({
@@ -11,4 +11,9 @@ export const move = (keyCode) => ({
   payload: {
     keyCode: keyCode
   }
+});
+
+export const keepPlaying = () => ({
+  type: KEEP_PLAYING,
+  payload: null
 });

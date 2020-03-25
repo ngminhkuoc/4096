@@ -8,7 +8,7 @@ const TileList = ({ cells }) => (
             cells && cells.length ?
                 cells.map((column) => (
                     column.map((cell) => (
-                        cell ? <TileInner key={`${cell.x} - ${cell.y}`} tile={cell} /> : ""
+                        cell ? <TileInner key={`${cell.x + 1}-${cell.y + 1}`} tile={cell} /> : ""
                     ))
                 ))
                 : ""

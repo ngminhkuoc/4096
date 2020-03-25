@@ -6,13 +6,14 @@ export default class Header extends Component {
     }
 
     render() {
+        const { score, bestScore } = this.props;
         return (
             <>
                 <div className="heading">
                     <h1 className="title">4096</h1>
                     <div className="scores-container">
-                        <div className="score-container">0</div>&nbsp;
-                        <div className="best-container">0</div>
+                        <div className="score-container">{score}</div>&nbsp;
+                        <div className="best-container">{bestScore}</div>
                     </div>
                 </div>
                 <div className="above-game">

@@ -29,12 +29,12 @@ class Container extends Component {
   }
 
   render() {
-    const { actions } = this.props;
+    const { games, actions } = this.props;
 
     return (
       <div className="container" >
-        <Header newGame={actions.newGame} />
-        <GameContainer won={false} over={false} />
+        <Header newGame={actions.newGame} score={games.score} bestScore={games.bestScore} />
+        <GameContainer won={games.won} over={games.over} tryAgain={actions.newGame} keepPlaying={actions.keepPlaying} />
         <Footer />
       </div>
     );

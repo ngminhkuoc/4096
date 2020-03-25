@@ -6,3 +6,5 @@ export const KEYCODE = {
     RIGHT: 39,
     DOWN: 40
 }
+
+export const MAX_SCORE = 4096;
