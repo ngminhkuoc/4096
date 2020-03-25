@@ -6,4 +6,4 @@ Made just for fun. [Play it here!](https://4096-react.quocnguyen.dev)
 ## License
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) Claudio Procida 2015
+Copyright (c) Quoc Nguyen 2020
