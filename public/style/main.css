@@ -9,7 +9,7 @@ html, body {
 }
 
 body {
-    margin: 80px 0;
+    margin: 10px 0;
 }
 
 .heading:after {
@@ -682,13 +682,12 @@ hr {
 }
 
 .restart-button {
-    display: inline-block;
     background: #8f7a66;
     border-radius: 3px;
     padding: 0 20px;
-    text-decoration: none;
     color: #f9f6f2;
     height: 40px;
+    font-weight: bold;
     line-height: 42px;
     display: block;
     text-align: center;

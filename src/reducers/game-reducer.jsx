@@ -1,4 +1,4 @@
-import { NEW_GAME } from '../constants/action-types';
+import { NEW_GAME, MOVE } from '../constants/action-types';
 import { SIZE } from '../constants/app-constants';
 
 const startTiles = 2;
@@ -8,7 +8,8 @@ const initialState = {
     score: 0,
     over: false,
     won: false,
-    keepPlaying: false
+    keepPlaying: false,
+    keyCode: null
 };
 
 export default function games(state = initialState, action) {
@@ -16,7 +17,9 @@ export default function games(state = initialState, action) {
         case NEW_GAME:
             let grid = createGrid(SIZE);
             addStartTiles(grid);
-            return {...state, grid: grid};
+            return { ...state, grid: grid };
+        case MOVE:
+            return { ...state, keyCode: action.payload.keyCode };
         default:
             return state;
     }
