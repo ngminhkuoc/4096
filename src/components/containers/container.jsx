@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '../header';
+import Footer from '../footer';
 import GameContainer from './game-container';
-import * as GameActions from '../actions/game-actions';
-import { KEYCODE } from '../constants/app-constants'
+import * as GameActions from '../../actions/game-actions';
+import { KEYCODE } from '../../constants/app-constants'
 
 class Container extends Component {
   constructor(props) {
@@ -23,6 +23,8 @@ class Container extends Component {
   }
   componentDidMount() {
     document.addEventListener("keydown", this.movingFunction, false);
+    const { actions } = this.props;
+    actions.loadGame();
   }
   componentWillUnmount() {
     document.removeEventListener("keydown", this.movingFunction, false);

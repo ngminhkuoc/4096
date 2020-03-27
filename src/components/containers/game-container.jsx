@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GridBackGround from "../components/grid-background";
+import GridBackGround from "../grid-background";
 import TileContainer from "./tile-container";
 var classNames = require('classnames');
 

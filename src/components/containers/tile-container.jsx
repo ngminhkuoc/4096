@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React from 'react'
-import TileInner from '../components/tile-inner'
+import TileInner from '../tile-inner'
 
 const TileList = ({ cells }) => (
     <div className="tile-container">

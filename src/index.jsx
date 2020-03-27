@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import Container from './containers/container';
+import Container from './components/containers/container';
 import RootReducer from "./reducers/root-reducer";
 
 const store = createStore(RootReducer);

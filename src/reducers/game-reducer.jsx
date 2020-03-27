@@ -1,4 +1,4 @@
-import { NEW_GAME, MOVE, KEEP_PLAYING } from '../constants/action-types';
+import { NEW_GAME, MOVE, KEEP_PLAYING, LOAD_GAME } from '../constants/action-types';
 import { SIZE, KEYCODE, MAX_SCORE } from '../constants/app-constants';
 
 const startTiles = 2;
@@ -14,10 +14,11 @@ const initialState = {
 
 export default function games(state = initialState, action) {
     switch (action.type) {
+        case LOAD_GAME:
+            //TODO: load game from cookie
+            return newGame(state);
         case NEW_GAME:
-            let grid = createGrid(SIZE);
-            addStartTiles(grid);
-            return { ...state, grid: grid, over: false, won: false, score: 0, keepPlaying: false };
+            return newGame(state);
         case MOVE:
             return move(serializeState(state), action.payload.keyCode);
         case KEEP_PLAYING:
@@ -25,6 +26,12 @@ export default function games(state = initialState, action) {
         default:
             return state;
     }
+}
+
+const newGame = (state) => {
+    let grid = createGrid(SIZE);
+    addStartTiles(grid);
+    return { ...state, grid: grid, over: false, won: false, score: 0, keepPlaying: false };
 }
 
 const serializeState = (state) => {
@@ -212,10 +219,10 @@ const moveTile = (grid, tile, position) => {
 };
 
 /* Grid */
-const createGrid = function (size, previousGrid) {
+const createGrid = function (size) {
     return {
         size: size,
-        cells: previousGrid ? fromState(previousGrid) : empty(size)
+        cells: empty(size)
     };
 }
 
@@ -228,21 +235,6 @@ const empty = function (size) {
 
         for (var y = 0; y < size; y++) {
             row.push(null);
-        }
-    }
-
-    return cells;
-};
-
-const fromState = function (previousGrid) {
-    var cells = [];
-
-    for (var x = 0; x < previousGrid.size; x++) {
-        var row = cells[x] = [];
-
-        for (var y = 0; y < previousGrid.size; y++) {
-            var tile = previousGrid[x][y];
-            row.push(tile ? createTile(tile.position, tile.value) : null);
         }
     }
 
@@ -340,7 +332,7 @@ const createTile = function (position, value) {
         y: position.y,
         value: value || 2,
         previousPosition: null,
-        mergedFrom: null,// Tracks tiles that merged together
+        mergedFrom: null,
     };
 }
 
