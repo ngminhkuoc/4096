@@ -1,5 +1,6 @@
 import { NEW_GAME, MOVE, KEEP_PLAYING, LOAD_GAME } from '../constants/action-types';
 import { SIZE, KEYCODE, MAX_SCORE } from '../constants/app-constants';
+import * as LocalStorageManager from './local-storage';
 
 const startTiles = 2;
 
@@ -15,24 +16,51 @@ const initialState = {
 export default function games(state = initialState, action) {
     switch (action.type) {
         case LOAD_GAME:
-            //TODO: load game from cookie
-            return newGame(state);
+            return loadGame(state);
         case NEW_GAME:
             return newGame(state);
         case MOVE:
             return move(serializeState(state), action.payload.keyCode);
         case KEEP_PLAYING:
-            return { ...state, keepPlaying: true, won: false };
+            var newState = { ...state, keepPlaying: true, won: false };
+            actuate(newState);
+            return newState;
         default:
             return state;
     }
 }
 
+const loadGame = (state) => {
+    var previousState = LocalStorageManager.getGameState();
+    if (previousState) {
+        return previousState;
+    }
+    else {
+        return newGame(state);
+    }
+}
+
 const newGame = (state) => {
+    LocalStorageManager.clearGameState();
     let grid = createGrid(SIZE);
     addStartTiles(grid);
-    return { ...state, grid: grid, over: false, won: false, score: 0, keepPlaying: false };
+
+    var newState = { ...state, grid: grid, over: false, won: false, score: 0, keepPlaying: false };
+    actuate(newState);
+    return newState;
 }
+
+const actuate = (state) => {
+    if (LocalStorageManager.getBestScore() < state.score) {
+        LocalStorageManager.setBestScore(state.score);
+    }
+
+    if (state.over) {
+        LocalStorageManager.clearGameState();
+    } else {
+        LocalStorageManager.setGameState(serializeState(state));
+    }
+};
 
 const serializeState = (state) => {
     return {
@@ -166,6 +194,8 @@ const move = (state, direction) => {
         if (!movesAvailable(grid)) {
             state.over = true; // Game over!
         }
+
+        actuate(state);
     }
     return state;
 };
