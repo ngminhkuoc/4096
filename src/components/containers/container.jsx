@@ -6,24 +6,17 @@ import Header from '../header';
 import Footer from '../footer';
 import GameContainer from './game-container';
 import * as GameActions from '../../actions/game-actions';
-import { KEYCODE } from '../../constants/app-constants'
+import * as InputManager from '../../reducers/input-manager';
 
 class Container extends Component {
-  constructor(props) {
-    super(props);
-    this.movingFunction = this.movingFunction.bind(this);
-  }
 
-  movingFunction(event) {
-    const { actions } = this.props;
-    if ([KEYCODE.UP, KEYCODE.DOWN, KEYCODE.LEFT, KEYCODE.RIGHT].includes(event.keyCode)) {
-      event.preventDefault();
-      actions.move(event.keyCode);
-    }
-  }
   componentDidMount() {
-    document.addEventListener("keydown", this.movingFunction, false);
     const { actions } = this.props;
+
+    InputManager.listen();
+    InputManager.on("move", actions.move);
+    InputManager.on("restart", actions.newGame);
+    
     actions.loadGame();
   }
   componentWillUnmount() {

@@ -1,5 +1,5 @@
 import { NEW_GAME, MOVE, KEEP_PLAYING, LOAD_GAME } from '../constants/action-types';
-import { SIZE, KEYCODE, MAX_SCORE } from '../constants/app-constants';
+import { SIZE, MAX_SCORE } from '../constants/app-constants';
 import * as LocalStorageManager from './local-storage';
 
 const startTiles = 2;
@@ -20,7 +20,7 @@ export default function games(state = initialState, action) {
         case NEW_GAME:
             return newGame(state);
         case MOVE:
-            return move(serializeState(state), action.payload.keyCode);
+            return move(serializeState(state), action.payload.direction);
         case KEEP_PLAYING:
             var newState = { ...state, keepPlaying: true, won: false };
             actuate(newState);
@@ -78,18 +78,14 @@ const isGameTerminated = (state) => {
 };
 
 const getVector = function (direction) {
-    switch (direction) {
-        case KEYCODE.LEFT:
-            return { x: -1, y: 0 };
-        case KEYCODE.UP:
-            return { x: 0, y: -1 };
-        case KEYCODE.RIGHT:
-            return { x: 1, y: 0 };
-        case KEYCODE.DOWN:
-            return { x: 0, y: 1 };
-        default:
-            return null;
-    }
+    var map = {
+        0: { x: 0, y: -1 }, // Up
+        1: { x: 1, y: 0 },  // Right
+        2: { x: 0, y: 1 },  // Down
+        3: { x: -1, y: 0 }   // Left
+    };
+
+    return map[direction];
 };
 
 const buildTraversals = function (vector) {
@@ -137,7 +133,6 @@ const positionsEqual = function (first, second) {
 
 const move = (state, direction) => {
     // 0: up, 1: right, 2: down, 3: left
-
     if (!state.grid || isGameTerminated(state)) return state; // Don't do anything if the game's over
 
     var cell, tile;
@@ -210,7 +205,7 @@ const tileMatchesAvailable = function (grid) {
             tile = cellContent(grid, { x: x, y: y });
 
             if (tile) {
-                for (var direction = KEYCODE.LEFT; direction <= KEYCODE.DOWN; direction++) {
+                for (var direction = 0; direction < 4; direction++) {
                     var vector = getVector(direction);
                     var cell = { x: x + vector.x, y: y + vector.y };
 

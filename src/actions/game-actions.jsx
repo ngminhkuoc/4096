@@ -10,10 +10,10 @@ export const newGame = () => ({
   payload: null
 });
 
-export const move = (keyCode) => ({
+export const move = (direction) => ({
   type: MOVE,
   payload: {
-    keyCode: keyCode
+    direction: direction
   }
 });
 
