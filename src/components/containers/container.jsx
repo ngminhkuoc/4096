@@ -19,6 +19,7 @@ class Container extends Component {
     
     actions.loadGame();
   }
+  
   componentWillUnmount() {
     document.removeEventListener("keydown", this.movingFunction, false);
   }
